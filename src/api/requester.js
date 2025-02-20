@@ -1,4 +1,4 @@
-import { userUtils } from './user.js';
+import { userUtils } from '../utils/userUtils.js';
 const baseUrl = 'http://localhost:3030';
 
 async function requester(method, url, data) {
@@ -28,12 +28,13 @@ async function requester(method, url, data) {
 				userUtils.clearUserData();
 			}
 
-			throw new Error(error.message);
+			throw error.message;
 		}
 
 		if (response.status === 204) {
-			return response.json();
+			return;
 		}
+		return response.json();
 	} catch (error) {
 		alert(error.message);
 		throw error;

@@ -1,7 +1,8 @@
 
 function getUserData() {
-	const userData = localStorage.getItem('userData');
-	return userData ? JSON.parse(userData) : null;
+	let userData = localStorage.getItem('userData');
+	userData = JSON.parse(userData);
+	return userData;
 }
 
 function setUserData(userData) {
