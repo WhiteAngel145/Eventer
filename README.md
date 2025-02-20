@@ -14,17 +14,36 @@ This is a SPA (Single Page Application) for creating and managing events. The ap
     ```bash
     git clone https://github.com/WhiteAngel145/Eventer.git
     ```
+
 2. Install dependencies:
     ```bash
     npm install
     ```
 
 ## Usage
-1. Start the application:
+To start and use the application, follow these steps:
+
+1. Install dependencies:
     ```bash
-    npm start
+    npm install
     ```
-2. Open a browser and go to `http://localhost:3000`.
+2. Run tests:
+    ```bash
+    npm run test
+    ```
+3. Start the application:
+    ```bash
+    npm run start
+    ```
+4. Start the RESTful server:
+    ```bash
+    npm run rest
+    ```
+5. Start the development server:
+    ```bash
+    npm run dev
+    ```
+6. Open a browser and go to `http://localhost:3000`.
 
 ## Features
 - Browse the event catalog
@@ -48,7 +67,7 @@ This is a SPA (Single Page Application) for creating and managing events. The ap
     - `utils/`: Folder localStore users
         - `userUtils.js`: Control localStore/sessionStorage
     - `views/`: Pages folder
-        - `create.js`: page for create event
+        - `create.js`: Page for create event
         - `delete.js`: Page for delete event
         - `details.js`: Page for event details
         - `edit.js`: Page for editing event
@@ -58,4 +77,10 @@ This is a SPA (Single Page Application) for creating and managing events. The ap
         - `logout.js`: Page for user logout
         - `navigation.js`: Page showing navigation bar
         - `register.js`: Page for user registration
-	- `App.js`: Main application 
+    - `App.js`: Main application
+
+## Author
+XXXXX-XXXXXXXX
+
+## License
+ISC
