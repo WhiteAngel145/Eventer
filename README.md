@@ -35,18 +35,27 @@ This is a SPA (Single Page Application) for creating and managing events. The ap
 
 ## Project Structure
 - `src/`: Source code folder
-    - `components/`: Components folder
-        - `Header.js`: Navigation component
-        - `EventList.js`: Component for displaying a list of events
-        - `EventDetail.js`: Component for displaying event details
-        - `EventForm.js`: Component for creating and editing events
-    - `pages/`: Pages folder
-        - `HomePage.js`: Home page
-        - `EventPage.js`: Page for displaying a list of events
-        - `LoginPage.js`: Page for user login
-        - `RegisterPage.js`: Page for user registration
+    - `api`: Folder API
+        - `requester.js`: REST service
+    - `lib`: Folder library
+        - `lit-html.js`: lit-html service
+        - `page.js`: page service
+    - `middlewares`: Folder middleware service
+        - `navMiddleware.js`: Service navigation
     - `services/`: Service modules folder
-        - `eventService.js`: Service for event operations
-        - `authService.js`: Service for user authentication
-	- `App.js`: Main application component
-	- `index.js`: Application entry point
+        - `dataService.js`: Service for event operations
+        - `userService.js`: Service for user authentication
+    - `utils/`: Folder localStore users
+        - `userUtils.js`: Control localStore/sessionStorage
+    - `views/`: Pages folder
+        - `create.js`: page for create event
+        - `delete.js`: Page for delete event
+        - `details.js`: Page for event details
+        - `edit.js`: Page for editing event
+        - `events.js`: Page for displaying a list of events
+        - `home.js`: Home page
+        - `login.js`: Page for user login
+        - `logout.js`: Page for user logout
+        - `navigation.js`: Page showing navigation bar
+        - `register.js`: Page for user registration
+	- `App.js`: Main application 
