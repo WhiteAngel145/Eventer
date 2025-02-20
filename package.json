@@ -7,7 +7,7 @@
     "test": "mocha tests",
     "start": "http-server -a localhost -p 3000 -P http://localhost:3000? -c-1",
     "rest": "node server/server.js",
-    "devServer": "lite-server"
+    "dev": "lite-server"
   },
   "author": "",
   "license": "ISC",
