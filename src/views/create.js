@@ -1,10 +1,12 @@
 import { render, html } from "../lib/lit-html.js";
+import { createEvent } from "../services/dataServices.js";
+import page from "../lib/page.js";
 
-const template = () => html`
+const template = (onCreate) => html`
         <section id="create">
           <div class="form">
             <h2>Add Event</h2>
-            <form class="create-form">
+            <form @submit=${onCreate} class="create-form">
               <input type="text" name="name" id="name" placeholder="Event"/>
               <input type="text" name="imageUrl" id="event-image" placeholder="Event Image URL"/>
               <input type="text" name="category" id="event-category" placeholder="Category" />
@@ -17,5 +19,18 @@ const template = () => html`
 `;
 
 export async function createView(ctx) {
-	render(template());
+	render(template(createEventHandler));
+}
+
+async function createEventHandler(event) {
+  event.preventDefault();
+  const formData = new FormData(event.target);
+  const data = Object.fromEntries(formData.entries());
+
+  if (data.name == '' || data.imageUrl == '' || data.category == '' || data.description == '' || data.date == '') {
+    return alert('All fields are required!');
+  }
+
+  await createEvent(data);
+  page.redirect('/events');
 }

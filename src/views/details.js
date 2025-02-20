@@ -37,8 +37,6 @@ export async function detailsView(ctx) {
   const data = await getEventById(id);
   const userData = userUtils.getUserData();
   const isOwner = userData && userData._id === data._ownerId;
-  console.log('Event details ------> ', data);
-  console.log('User data ------> ', userData);
-  console.log('Is owner ------> ', isOwner);
+
 	render(template(data, isOwner, userData));
 }
