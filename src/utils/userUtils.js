@@ -12,3 +12,9 @@ function setUserData(userData) {
 function clearUserData() {
 	localStorage.removeItem('userData');
 }
+
+export const userUtils = {
+	getUserData,
+	setUserData,
+	clearUserData,
+};

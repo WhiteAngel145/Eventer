@@ -1,4 +1,4 @@
-
+import { userUtils } from './user.js';
 const baseUrl = 'http://localhost:3030';
 
 async function requester(method, url, data) {
@@ -8,7 +8,7 @@ async function requester(method, url, data) {
 		headers: {},
 	};
 
-	// const userData = getUserData();
+	const userData = userUtils.getUserData();
 
 	if (data) {
 		options.headers['Content-Type'] = 'application/json';
@@ -25,7 +25,7 @@ async function requester(method, url, data) {
 			const error = await response.json();
 			
 			if (response.status === 403 && error.message === 'Invalid access token') {
-				clearUserData();
+				userUtils.clearUserData();
 			}
 
 			throw new Error(error.message);
