@@ -1,21 +1,27 @@
 import { render, html } from "../lib/lit-html.js";
+import { getEvents } from "../services/dataServices.js";
 
-const template = () => html`
+const template = (events) => html`
 	    <h2>Current Events</h2>
         <section id="dashboard">
-          <div class="event">
-            <img src="./images/large_deniroparty_marquee.jpg" alt="example1" />
-            <p class="title">
-              Robert De Niro Themed Party
-            </p>
-            <p class="date">15.04.2023 from 17:00</p>
-            <a class="details-btn" href="">Details</a>
-          </div>
+        ${events.length > 0
+          ? events.map(eventTemplate) 
+          : html`<h4>No Events yet.</h4>`
+          }
         </section>
-        
-        <h4>No Events yet.</h4>
+`;
+
+const eventTemplate = (data) => html`
+  <div class="event">
+    <img src=${data.imageUrl} alt="example1" />
+    <p class="title">${data.name}</p>
+    <p class="date">${data.date}</p>
+    <a class="details-btn" href="/details/${data._id}">Details</a>
+  </div>
 `;
 
 export async function eventsView(ctx) {
-	render(template());
+  const events = await getEvents();
+  console.log(events);
+	render(template(events));
 }
