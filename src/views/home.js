@@ -3,7 +3,7 @@ import { render, html } from "../lib/lit-html.js";
 const template = () => html`
         <section id="home">
           <div class="home-intro">
-            <h1 class="fancy">Welcome to our community-driven events website! We believe that the best eventcome from the community.</h1>
+            <h1 class="fancy">Welcome to our community-driven events website! We believe that the best events come from the community.</h1>
                <p>So why wait? Join our community today and start discovering and sharing the best events in your area!</p>
                  <a class="event-btn" href="/events">To Events</a>       
           </div>
