@@ -1,8 +1,9 @@
 import { render, html, nothing } from "../lib/lit-html.js";
-import { getEventById } from "../services/dataServices.js";
+import { getEventById, goToEvent, getTotalGoing, isGoing } from "../services/dataServices.js";
 import { userUtils } from "../utils/userUtils.js";
+import page from "../lib/page.js";
 
-const template = (data, isOwner, userData) => html`
+const template = (data, isOwner, userData, totalGoing, isGoingEvent, onGoing) => html`
     <section id="details">
       <div id="details-wrapper">
         <img id="details-img" src=${data.imageUrl} alt=${data.name} />
@@ -17,14 +18,14 @@ const template = (data, isOwner, userData) => html`
             <span>${data.description}</span>
           </div>
         </div>
-        <h3>Going: <span id="go">0</span> times.</h3>
+        <h3>Going: <span id="go">${totalGoing}</span> times.</h3>
         <!--Edit and Delete are only for creator-->
         <div id="action-buttons">
-          ${userData
+          ${userData && !isGoingEvent
               ? isOwner
                 ? html`<a href="/edit/${data._id}" id="edit-btn">Edit</a>
                        <a href="/delete/${data._id}" id="delete-btn">Delete</a>`
-                : html`<a href="#" id="go-btn">Going</a>`
+                : html`<a @click=${onGoing} href="#" id="go-btn">Going</a>`
               : nothing
           }
         </div>
@@ -37,6 +38,17 @@ export async function detailsView(ctx) {
   const data = await getEventById(id);
   const userData = userUtils.getUserData();
   const isOwner = userData && userData._id === data._ownerId;
+  const totalGoing = await getTotalGoing(id);
+  const isGoingEvent = userData ? await isGoing(id, userData._id) : false;
+  
+	render(template(data, isOwner, userData, totalGoing, isGoingEvent, eventGoingHandler));
 
-	render(template(data, isOwner, userData));
+  async function eventGoingHandler(event) {
+    event.preventDefault();
+    const data = {
+      eventId: id
+    };
+    await goToEvent(data);
+    page.redirect(`/details/${id}`);
+  }
 }

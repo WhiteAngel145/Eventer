@@ -6,7 +6,9 @@ const endpoints = {
 	createEvent: '/data/events',
 	editEvent: (idEvent) => `/data/events/${idEvent}`,
 	deleteEvent: (idEvent) => `/data/events/${idEvent}`,
-	goToEvent: (idEvent) => '/data/going',
+	goToEvent: '/data/going',
+	getTotalGoing: (idEvent) => `/data/going?where=eventId%3D%22${idEvent}%22&distinct=_ownerId&count`,
+	isGoing: (idEvent, userId) => `/data/going?where=eventId%3D%22${idEvent}%22%20and%20_ownerId%3D%22${userId}%22&count`
 }
 
 export async function getEvents() {
@@ -32,4 +34,19 @@ export async function editEvent(idEvent, data) {
 export async function deleteEvent(idEvent) {
 	const event = await api.del(endpoints.deleteEvent(idEvent));
 	return event;
+}
+
+export async function goToEvent(data) {
+	const event = await api.post(endpoints.goToEvent, data);
+	return event;
+}
+
+export async function getTotalGoing(idEvent) {
+	const totalGoing = await api.get(endpoints.getTotalGoing(idEvent));
+	return totalGoing;
+}
+
+export async function isGoing(idEvent, userId) {
+	const isGoing = await api.get(endpoints.isGoing(idEvent, userId));
+	return isGoing;
 }

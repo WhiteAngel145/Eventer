@@ -37,6 +37,4 @@ export async function editEventHandler(idEvent, event) {
 
   const response = await editEvent(idEvent, data);
   page.redirect(`/details/${idEvent}`);
-  console.log(response);
-  
 }

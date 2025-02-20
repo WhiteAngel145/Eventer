@@ -22,6 +22,5 @@ const eventTemplate = (data) => html`
 
 export async function eventsView(ctx) {
   const events = await getEvents();
-  console.log(events);
 	render(template(events));
 }
